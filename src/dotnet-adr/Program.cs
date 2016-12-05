@@ -5,7 +5,7 @@ namespace ConsoleApplication
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var app = new CommandLineApplication
 
@@ -16,6 +16,17 @@ namespace ConsoleApplication
             };
             
             app.HelpOption("-h|--help");
+
+
+            app.OnExecute(() =>
+                        {
+                            app.ShowHelp();
+                            return 2;
+                        });
+
+            return app.Execute(args);
+            
+           
         }
     }
 }
